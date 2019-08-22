@@ -1,4 +1,4 @@
-# weather-notifications-slack
+# weather-notifications
   - ポン子さんもといウェザーロイドさんが天気を教えてくれるbot作りたい
 
 ## ./env.yml

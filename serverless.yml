@@ -1,4 +1,4 @@
-service: weather-notifications-slack
+service: weather-notifications
 
 custom:
   defaultStage: dev
@@ -15,10 +15,7 @@ provider:
     ${file(./env.yml)}
 
 functions:
-  hello:
-    handler: hello
+  weather_notifications:
+    handler: weather_notifications
     events:
-      - http:
-          path: test
-          method: post
-          integration: lambda
+      - schedule: cron(0 10 * * ? *) # UTC
