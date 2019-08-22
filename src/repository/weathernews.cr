@@ -4,11 +4,11 @@ require "../model"
 
 class Weathernews
   def initialize(@point : Point)
-    @url = "http://weathernews.jp/onebox/#{@point.lat}/#{@point.lng}/type=day"
+    @url = "http://weathernews.jp/onebox/#{@point.lat}/#{@point.lng}/"
   end
 
   def get_rainy_percents
-    res = HTTP::Client.get @url
+    res = HTTP::Client.get "#{@url}type=day"
 
     base = res.body.split("weather-2day__rainy")[1].split("<td>")
 
