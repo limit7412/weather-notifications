@@ -1,9 +1,12 @@
 require "json"
+require "../repository/slack"
 
 module ErrorUsecase
   extend self
 
   def alert(error)
+    slack = Slack.new ENV["FAILD_WEBHOOK_URL"]
+
     post = {
       fallback: ENV["FAILD_FALLBACK"],
       pretext:  "<@#{ENV["SLACK_ID"]}> #{ENV["FAILD_FALLBACK"]}",
@@ -12,12 +15,7 @@ module ErrorUsecase
       color:    "#EB4646",
       footer:   "weather_notifications",
     }
-    body = {
-      attachments: [post],
-    }
 
-    HTTP::Client.post("#{ENV["FAILD_WEBHOOK_URL"]}",
-      body: body.to_json
-    )
+    slack.send_post post
   end
 end
