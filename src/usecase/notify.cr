@@ -1,8 +1,11 @@
+require "./weather"
+
 class NotifyUsecase
   def initialize
+    @weather = WeatherUsecase.new
   end
 
   def check_weather
-    "test"
+    @weather.check
   end
 end
