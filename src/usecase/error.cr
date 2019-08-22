@@ -1,6 +1,6 @@
 require "json"
 
-module LambdaError
+module ErrorUsecase
   extend self
 
   def alert(error)
@@ -10,7 +10,7 @@ module LambdaError
       title:    error.message,
       text:     error.backtrace.join("\n"),
       color:    "#EB4646",
-      footer:   "function-name",
+      footer:   "weather_notifications",
     }
     body = {
       attachments: [post],

@@ -5,16 +5,15 @@ authors:
   - limit7412 <qazx7412@newgenerations.im>
 
 targets:
-  weather-notifications-slack:
-    main: s3test.cr
-    # main: src/handler/weather_notifications_slack.cr
+  weather-notifications:
+    main: src/handler/weather_notifications.cr
 
 crystal: 0.28.0
 
 license: MIT
 
 dependencies:
-  aws4_signer:
-    github: dtan4/aws4_signer.cr
+  discordcr:
+    github: meew0/discordcr
     branch: master
 

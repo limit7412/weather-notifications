@@ -1,11 +1,13 @@
 require "./../runtime/handler"
+require "./../usecase/notify"
 require "./../usecase/error"
 
 def hello(event)
   begin
-    event["body"]
+    app = NotifyUsecase.new
+    app.check_weather
   rescue err
-    LambdaError.alert err
+    ErrorUsecase.alert err
     raise err
   end
 end
