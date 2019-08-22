@@ -4,10 +4,10 @@ require "./../usecase/error"
 
 def hello(event)
   begin
-    app = NotifyUsecase.new
+    app = Notify.new
     app.check_weather
   rescue err
-    ErrorUsecase.alert err
+    LambdaError.alert err
     raise err
   end
 end

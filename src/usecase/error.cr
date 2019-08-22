@@ -1,7 +1,7 @@
 require "json"
 require "../repository/slack"
 
-module ErrorUsecase
+module LambdaError
   extend self
 
   def alert(error)

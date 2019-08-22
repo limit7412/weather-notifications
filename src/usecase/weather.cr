@@ -1,4 +1,4 @@
-class WeatherUsecase
+class Weather
   def initialize
   end
 
