@@ -7,7 +7,7 @@ class Weathernews
     @url = "http://weathernews.jp/onebox/#{@point.lat}/#{@point.lng}/type=day"
   end
 
-  def check
+  def get_rainy_percents
     res = HTTP::Client.get @url
 
     base = res.body.split("weather-2day__rainy")[1].split("<td>")
