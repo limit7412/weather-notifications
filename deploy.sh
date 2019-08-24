@@ -10,6 +10,6 @@ cat ./serverless.yml |
 grep 'handler'       |
 awk '{print $2}'     |
 while read line; do
-    ./build.sh $line || exit 1
+    sudo ./build.sh $line || exit 1
 done &&
 sls deploy -s $stg

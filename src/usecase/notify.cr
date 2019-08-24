@@ -8,12 +8,12 @@ class Notify
   end
 
   def check_weather
-    ENV["CHECK_PLACE"].split(",").each do |place|
-      point = Geocoding.get place
-      @weather.check_rainy_percents point
-
+    ENV["CHECK_PLACE"].split(",").map_with_index do |place, index|
       # api負荷対策
-      sleep 15
+      sleep 15 if index != 0
+
+      point = Geocoding.get place
+      @weather.check_need_umbrella point
     end
   end
 end
