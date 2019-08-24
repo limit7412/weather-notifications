@@ -4,8 +4,7 @@ require "../model"
 class Weather
   @alert_threshold = 45
   @warning_threshold = 65
-  @check_times = ["12", "18", "24"]
-  @times_map = {
+  @check_times = {
     "12": "朝",
     "18": "昼",
     "24": "夜",
@@ -26,10 +25,12 @@ class Weather
 
   private def map_need_time(rainy_percents, threshold : Int32)
     @check_times
+      .map { |key, val| key }
       .select { |time|
         rainy_percents[time] > threshold
-      }.map { |item|
-        @times_map[item]
+      }
+      .map { |item|
+        @check_times[item]
       }
   end
 end
