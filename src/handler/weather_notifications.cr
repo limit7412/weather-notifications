@@ -2,7 +2,7 @@ require "./../runtime/handler"
 require "./../usecase/notify"
 require "./../usecase/error"
 
-def hello(event)
+Lambda.handler do |event|
   begin
     app = Notify.new
     app.check_weather
@@ -11,5 +11,3 @@ def hello(event)
     raise err
   end
 end
-
-lambda_handler(hello)
