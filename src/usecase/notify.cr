@@ -13,7 +13,17 @@ class Notify
       sleep 15 if index != 0
 
       point = Geocoding.get place
-      @weather.check_need_umbrella point
+      need_umbrella = @weather.check_need_umbrella point
+
+      break if need_umbrella[:alert].size == 0
+
+      text = "#{place}では#{need_umbrella[:alert].join("、")}に雨が降る可能性があります。折りたたみ傘が必要かもしれません。"
+
+      if need_umbrella[:warning].size != 0
+        text += "特に#{need_umbrella[:warning].join("、")}は降水確率が高いので注意してください。"
+      end
+
+      text
     end
   end
 end
