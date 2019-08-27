@@ -8,22 +8,36 @@ class Notify
   end
 
   def check_weather
-    ENV["CHECK_PLACE"].split(",").map_with_index do |place, index|
+    need_umbrella = ENV["CHECK_PLACE"].split(",").map_with_index do |place, index|
       # api負荷対策
       sleep 15 if index != 0
 
       point = Geocoding.get place
-      need_umbrella = @weather.check_need_umbrella point
+      res = @weather.check_need_umbrella point
 
-      break if need_umbrella[:alert].size == 0
-
-      text = "#{place}では#{need_umbrella[:alert].join("、")}に雨が降る可能性があります。折りたたみ傘が必要かもしれません。"
-
-      if need_umbrella[:warning].size != 0
-        text += "特に#{need_umbrella[:warning].join("、")}は降水確率が高いので注意してください。"
-      end
-
-      text
+      {
+        place:         place,
+        need_umbrella: res,
+      }
+    end.select do |item|
+      item[:need_umbrella][:alert].size != 0
     end
+
+    return if need_umbrella.size == 0
+
+    alert = need_umbrella.map do |item|
+      "#{item[:place]}では#{item[:need_umbrella][:alert].join("、")}"
+    end
+    text = "#{alert.join("、")}に雨が降る可能性があります。折りたたみ傘を持ち歩いたほうがいいかもしれません。"
+
+    warning = need_umbrella.map do |item|
+      next if item[:need_umbrella][:warning].size == 0
+      "#{item[:place]}では#{item[:need_umbrella][:warning].join("、")}"
+    end.select do |item|
+      item != nil
+    end
+    text += "特に#{warning.join("、")}の降水確率が高いので注意してください。" if warning.size != 0
+
+    text
   end
 end
