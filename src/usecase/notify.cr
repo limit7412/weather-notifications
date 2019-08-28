@@ -1,5 +1,6 @@
 require "../repository/geocoding"
 require "./weather"
+require "../repository/discord"
 require "../model"
 
 class Notify
@@ -38,6 +39,9 @@ class Notify
     end
     text += "特に#{warning.join("、")}の降水確率が高いので注意してください。" if warning.size != 0
 
-    text
+    discord = Discord.new ENV["WEBHOOK_URL"]
+    discord.send_post({
+      content: text
+    })
   end
 end
