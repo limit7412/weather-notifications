@@ -29,7 +29,7 @@ class Notify
     alert = need_umbrella.map do |item|
       "#{item[:place]}では#{item[:need_umbrella][:alert].join("、")}"
     end
-    text = "#{alert.join("、")}に雨が降る可能性があります。折りたたみ傘を持ち歩いたほうがいいかもしれません。"
+    text = "今日は#{alert.join("、")}に雨が降る可能性があります。折りたたみ傘を持ち歩いたほうがいいかもしれません。"
 
     warning = need_umbrella.map do |item|
       next if item[:need_umbrella][:warning].size == 0
@@ -41,7 +41,7 @@ class Notify
 
     discord = Discord.new ENV["WEBHOOK_URL"]
     discord.send_post({
-      content: text
+      content: "@everyone\n" + text + "\n詳しい情報はこちらで確認してくださいね！\nhttps://weathernews.jp",
     })
   end
 end
