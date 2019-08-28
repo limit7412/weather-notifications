@@ -1,0 +1,19 @@
+name: weather-notifications
+version: 0.1.0
+
+authors:
+  - limit7412 <qazx7412@newgenerations.im>
+
+targets:
+  weather-notifications:
+    main: src/handler/weather_notifications.cr
+
+crystal: 0.28.0
+
+license: MIT
+
+dependencies:
+  discordcr:
+    github: meew0/discordcr
+    branch: master
+
