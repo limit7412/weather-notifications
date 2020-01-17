@@ -18,4 +18,4 @@ functions:
   weather_notifications:
     handler: weather_notifications
     events:
-      - schedule: cron(30 16 * * ? *) # UTC
+      - schedule: cron(10 20 * * ? *) # UTC
