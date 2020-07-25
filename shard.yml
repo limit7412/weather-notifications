@@ -5,10 +5,10 @@ authors:
   - limit7412 <qazx7412@newgenerations.im>
 
 targets:
-  weather-notifications:
-    main: src/handler/weather_notifications.cr
+  bootstrap:
+    main: src/main.cr
 
-crystal: 0.28.0
+crystal: 0.35.0
 
 license: MIT
 
