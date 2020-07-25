@@ -1,4 +1,4 @@
-# weather-notifications
+# weather-notifications ![crystal-sls](https://github.com/limit7412/weather_notifications_discord/workflows/crystal-sls/badge.svg)
   - ポン子さんもといウェザーロイドさんが天気を教えてくれるbot
 
 ## 現状の機能
