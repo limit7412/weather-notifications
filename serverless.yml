@@ -1,8 +1,9 @@
 service: weather-notifications
 
 custom:
+  defaultAccount: dummy
+  defaultDigest: dummy
   defaultStage: dev
-  api_version: v0
 
 provider:
   name: aws
@@ -10,12 +11,11 @@ provider:
   timeout: 300
   region: ap-northeast-1
   stage: ${opt:stage, self:custom.defaultStage}
-  # profile: qazx7412
   environment:
     ${file(./env.yml)}
 
 functions:
   weather_notifications:
-    handler: weather_notifications
+    image: ${opt:account, self:custom.defaultAccount}.dkr.ecr.${self:provider.region}.amazonaws.com/weather_notifications_${self:provider.stage}@${opt:digest, self:custom.defaultDigest}
     events:
       - schedule: cron(10 20 * * ? *) # UTC
