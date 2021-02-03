@@ -39,4 +39,4 @@ jobs:
         docker cp $REPOSITORY:/work/bootstrap .
 
     - name: deploy
-      run: sls deploy --stage dev > /dev/null
+      run: sls deploy --stage dev
