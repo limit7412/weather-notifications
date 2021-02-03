@@ -16,6 +16,6 @@ provider:
 
 functions:
   weather_notifications:
-    image: ${opt:account, self:custom.defaultAccount}.dkr.ecr.${self:provider.region}.amazonaws.com/weather_notifications_${self:provider.stage}@${opt:digest, self:custom.defaultDigest}
+    handler: weather_notifications
     events:
       - schedule: cron(10 20 * * ? *) # UTC
