@@ -4,10 +4,11 @@ require "./usecase/error"
 
 Lambda.handler "weather_notifications" do |event|
   begin
-    app = Notify.new
+    app = Usecase::Notify.new
     app.check_weather
   rescue err
-    LambdaError.alert err
+    alert = Usecase::Alert.new err
+    alert.send
     raise err
   end
 end
