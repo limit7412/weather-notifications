@@ -1,5 +1,5 @@
-# weather-notifications 
-![crystal-sls](https://github.com/limit7412/weather_notifications_discord/workflows/crystal-sls/badge.svg)
+# weather-notifications
+[![serverless](https://github.com/limit7412/weather_notifications_discord/actions/workflows/serverless-prod.yml/badge.svg?branch=master)](https://github.com/limit7412/weather_notifications_discord/actions/workflows/serverless-prod.yml)
 
   - ポン子さんもといウェザーロイドさんが天気を教えてくれるbot
 
