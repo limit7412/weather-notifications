@@ -1,8 +1,6 @@
 service: weather-notifications
 
 custom:
-  defaultAccount: dummy
-  defaultDigest: dummy
   defaultStage: dev
 
 provider:
@@ -10,12 +8,19 @@ provider:
   runtime: provided
   timeout: 300
   region: ap-northeast-1
+  ecr:
+    images:
+      appImage:
+        path: ./
   stage: ${opt:stage, self:custom.defaultStage}
   environment:
     ${file(./env.yml)}
 
 functions:
   weather_notifications:
-    handler: weather_notifications
+    image:
+      name: appImage
+      command:
+        - weather_notifications
     events:
       - schedule: cron(10 20 * * ? *) # UTC
