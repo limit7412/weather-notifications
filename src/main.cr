@@ -2,7 +2,7 @@ require "./runtime/handler"
 require "./usecase/notify"
 require "./usecase/error"
 
-Serverless::Lambda.handler "weather_notifications" do |event|
+Serverless::Lambda.handler "weather_notifications" do |_|
   begin
     app = Usecase::Notify.new
     app.check_weather
