@@ -13,7 +13,7 @@ module Repository
 
       base = res.body.split("weather-2day__rainy")[1].split("<td>")
 
-      return {
+      {
         "6":  pick_up_percent(base[1]),
         "12": pick_up_percent(base[2]),
         "18": pick_up_percent(base[3]),
