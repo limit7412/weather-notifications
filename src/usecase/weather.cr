@@ -26,7 +26,7 @@ module Usecase
 
     private def map_need_time(rainy_percents, threshold : Int32)
       @check_times
-        .map do |key, val|
+        .map do |key, _|
           key
         end
         .select do |time|

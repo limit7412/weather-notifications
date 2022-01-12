@@ -1,5 +1,6 @@
 require "json"
 require "http/client"
+require "../runtime/handler"
 
 module Serverless
   module Lambda
@@ -29,6 +30,13 @@ module Serverless
         end
 
         HTTP::Client.post url, headers: header, body: body.to_json
+      end
+    end
+
+    def print_log(log : String)
+      log.split(//).each_slice(50000) do |line|
+        puts `echo '#{line.join.gsub(/(\r\n|\r|\n|\f)/, "")}'`
+        STDOUT.flush
       end
     end
   end

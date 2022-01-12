@@ -5,13 +5,15 @@ require "../models"
 module Repository
   class Weathernews
     def initialize(@point : Models::Point)
-      @url = "http://weathernews.jp/onebox/#{@point.lat}/#{@point.lng}/"
+      @url = "https://weathernews.jp/onebox/#{@point.lat}/#{@point.lng}/"
     end
 
     def get_rainy_percents
-      res = HTTP::Client.get "#{@url}type=day"
+      res = HTTP::Client.get @url
 
-      base = res.body.split("weather-2day__rainy")[1].split("<td>")
+      base = res.body
+        .split("day2Table day2__wind")[1]
+        .split("<div class=\"day2Table__item\">")
 
       {
         "6":  pick_up_percent(base[1]),
@@ -21,8 +23,11 @@ module Repository
       }
     end
 
-    private def pick_up_percent(base : String)
-      base.split("</td>")[0].split(" ")[0].to_i { 0 }
+    private def pick_up_percent(base : String): Int
+      base
+        .split("<p class=\"text\">")[1]
+        .split("<span")[0]
+        .to_i { 0 }
     end
   end
 end
