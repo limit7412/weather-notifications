@@ -5,11 +5,11 @@ require "../models"
 module Repository
   class Weathernews
     def initialize(@point : Models::Point)
-      @url = "http://weathernews.jp/onebox/#{@point.lat}/#{@point.lng}/"
+      @url = "https://weathernews.jp/onebox/#{@point.lat}/#{@point.lng}/"
     end
 
     def get_rainy_percents
-      res = HTTP::Client.get "#{@url}type=day"
+      res = HTTP::Client.get @url
 
       base = res.body
         .split("day2Table day2__wind")[1]
@@ -27,7 +27,6 @@ module Repository
       base
         .split("<p class=\"text\">")[1]
         .split("<span")[0]
-        .delete("\"")
         .to_i { 0 }
     end
   end
