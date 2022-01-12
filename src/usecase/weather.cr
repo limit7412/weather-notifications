@@ -18,7 +18,7 @@ module Usecase
       wn = Repository::Weathernews.new point
       rainy_percents = wn.get_rainy_percents
 
-      return {
+      {
         "alert":   map_need_time(rainy_percents, @alert_threshold),
         "warning": map_need_time(rainy_percents, @warning_threshold),
       }
