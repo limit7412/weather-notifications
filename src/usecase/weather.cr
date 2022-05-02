@@ -6,9 +6,8 @@ module Usecase
     @alert_threshold = 45
     @warning_threshold = 65
     @check_times = {
-      "12": "朝方",
-      "18": "午後",
-      "24": "夜間",
+      "am": "午前",
+      "pm": "午後",
     }
 
     def initialize
