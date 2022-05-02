@@ -12,7 +12,6 @@ module Repository
       res = HTTP::Client.get @url
 
       base = res.body
-        .split("day2Table day2__wind")[1]
         .split("<div class=\"day2Table__item\">")
 
       {
