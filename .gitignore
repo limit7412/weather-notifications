@@ -10,3 +10,5 @@ lib
 env.yml
 
 bin/
+
+.idea/
